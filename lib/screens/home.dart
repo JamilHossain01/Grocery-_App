@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Center(
         child: SwitchListTile(
-          title: Text('Theme'),
+          title: Text('DarkTheme'),
           secondary: Icon(themeState.getDarkTheme
               ? Icons.dark_mode_outlined
               : Icons.light_mode_outlined),
