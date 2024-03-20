@@ -38,9 +38,9 @@ class _BottombarScreenState extends State<BottombarScreen> {
     bool _isDark = themeState.getDarkTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_pages[_seletedIndex]['title']),
-      ),
+      // appBar: AppBar(
+      //   title: Text(_pages[_seletedIndex]['title']),
+      // ),
       body: _pages[_seletedIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
