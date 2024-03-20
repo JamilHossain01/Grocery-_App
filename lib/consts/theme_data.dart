@@ -8,14 +8,14 @@ class Styles {
         primaryColor: Colors.blue,
         colorScheme: ThemeData().colorScheme.copyWith(
               secondary: isDarkTheme
-                  ? const Color(0xFF1af3c)
+                  ? const Color(0x0ff1af3c)
                   : const Color(0xFFE8FDFD),
               brightness: isDarkTheme ? Brightness.dark : Brightness.light,
             ),
         cardColor:
-            isDarkTheme ? const Color(0xFF1af3c) : const Color(0xFFE8FDFD),
+            isDarkTheme ? const Color(0x0ff1af3c) : const Color(0xFFE8FDFD),
         canvasColor:
-            isDarkTheme ? const Color(0xFF1af3c) : const Color(0xFFE8FDFD),
+            isDarkTheme ? const Color(0x0ff1af3c) : const Color(0xFFE8FDFD),
         buttonTheme: Theme.of(context).buttonTheme.copyWith(
             colorScheme: isDarkTheme
                 ? const ColorScheme.dark()

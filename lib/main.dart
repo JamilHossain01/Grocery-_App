@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/consts/theme_data.dart';
 import 'package:grocery/provider/dark_theme_provider.dart';
+import 'package:grocery/screens/bottom_bar_screen.dart';
 import 'package:grocery/screens/home.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           title: 'Flutter Demo',
           theme: Styles.themeData(themeProvider.getDarkTheme, context),
-          home: HomeScreen(),
+          home: const BottombarScreen(),
         );
       }),
     );
