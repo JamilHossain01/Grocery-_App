@@ -19,11 +19,14 @@ class _BottombarScreenState extends State<BottombarScreen> {
   int _seletedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    List _pages = [
-      const HomeScreen(),
-      const CategoriesScreen(),
-      const CartScreen(),
-      const UserScreen(),
+    List<Map<String, dynamic>> _pages = [
+      {
+        'page': const HomeScreen(),
+        'title': "Home Screen",
+      },
+      {'page': const CategoriesScreen(), 'title': 'Categories Screen'},
+      {'page': const CartScreen(), 'title': 'CartScreen'},
+      {'page': const UserScreen(), 'title': "User Screen"}
     ];
     void _selectedPage(int index) {
       setState(() {
@@ -35,7 +38,10 @@ class _BottombarScreenState extends State<BottombarScreen> {
     bool _isDark = themeState.getDarkTheme;
 
     return Scaffold(
-      body: _pages[_seletedIndex],
+      appBar: AppBar(
+        title: Text(_pages[_seletedIndex]['title']),
+      ),
+      body: _pages[_seletedIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _seletedIndex,
