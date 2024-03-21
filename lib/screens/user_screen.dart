@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:grocery/provider/dark_theme_provider.dart';
@@ -135,52 +137,8 @@ class _UserScreenState extends State<UserScreen> {
                 title: 'Logout',
                 icon: IconlyLight.logout,
                 color: color,
-                onPressed: () async {
-                  await showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Row(
-                            children: [
-                              Image.asset(
-                                'assets/images/warning-sign.png',
-                                width: 20,
-                                height: 30,
-                                fit: BoxFit.fill,
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text('Sign Out')
-                            ],
-                          ),
-                          content: TextField(
-                            controller: _addressTextController,
-                            decoration: InputDecoration(
-                              hintText: 'Do you wanna sign out',
-                            ),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                if (Navigator.canPop(context)) {
-                                  Navigator.pop(context);
-                                }
-                              },
-                              child: Text(
-                                'cancel',
-                                style: TextStyle(color: Colors.cyan),
-                              ),
-                            ),
-                            TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'ok',
-                                  style: TextStyle(color: Colors.red),
-                                ))
-                          ],
-                        );
-                      });
+                onPressed: () {
+                  _showLogoutDialog();
                 },
               ),
             ],
@@ -188,6 +146,54 @@ class _UserScreenState extends State<UserScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _showLogoutDialog() async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Row(
+              children: [
+                Image.asset(
+                  'assets/images/warning-sign.png',
+                  width: 20,
+                  height: 30,
+                  fit: BoxFit.fill,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text('Sign Out')
+              ],
+            ),
+            content: TextField(
+              controller: _addressTextController,
+              decoration: InputDecoration(
+                hintText: 'Do you wanna sign out',
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  if (Navigator.canPop(context)) {
+                    Navigator.pop(context);
+                  }
+                },
+                child: Text(
+                  'cancel',
+                  style: TextStyle(color: Colors.cyan),
+                ),
+              ),
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'ok',
+                    style: TextStyle(color: Colors.red),
+                  ))
+            ],
+          );
+        });
   }
 
   ListTile _listTile({

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/provider/dark_theme_provider.dart';
-import 'package:grocery/screens/cart_screen.dart';
-import 'package:grocery/screens/categories_screen.dart';
-import 'package:grocery/screens/user_screen.dart';
+
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
