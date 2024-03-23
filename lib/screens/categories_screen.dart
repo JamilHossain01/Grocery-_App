@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grocery/provider/dark_theme_provider.dart';
 import 'package:grocery/widgets/categories_widget.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:grocery/widgets/utils.dart';
-import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatefulWidget {
   CategoriesScreen({Key? key}) : super(key: key);

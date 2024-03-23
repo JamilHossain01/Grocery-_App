@@ -38,6 +38,8 @@ dependencies:
   shared_preferences: ^2.2.2
   provider: ^6.1.2
   iconly: ^1.0.1
+  card_swiper: ^3.0.1
+  fancy_shimmer_image: ^2.0.3
 
 dev_dependencies:
   flutter_test:
