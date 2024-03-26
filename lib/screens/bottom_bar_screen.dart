@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grocery/provider/dark_theme_provider.dart';
+import 'package:grocery/screens/cart/cart_screen.dart';
 import 'package:grocery/screens/home.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
-import 'cart_screen.dart';
 import 'categories_screen.dart';
 import 'user_screen.dart';
 
@@ -16,7 +16,7 @@ class BottombarScreen extends StatefulWidget {
 }
 
 class _BottombarScreenState extends State<BottombarScreen> {
-  int _seletedIndex = 1;
+  int _seletedIndex = 2;
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> _pages = [

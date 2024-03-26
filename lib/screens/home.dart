@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:grocery/inner_screens/feed_screen.dart';
 import 'package:grocery/inner_screens/on_sale_screen.dart';
 import 'package:grocery/services/global_method.dart';
 import 'package:grocery/widgets/feed_items.dart';
@@ -59,16 +60,17 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
-                  onPressed: () {
-                    GetMethod.navigateTo(
-                        context: context, routeName: OnSaleScreen.routeName);
-                  },
-                  child: TextWidget(
-                    text: "View All",
-                    color: Colors.blue,
-                    textSize: 22,
-                    isTitle: true,
-                  )),
+                onPressed: () {
+                  GetMethod.navigateTo(
+                      context: context, routeName: OnSaleScreen.routeName);
+                },
+                child: TextWidget(
+                  text: "View All",
+                  color: Colors.blue,
+                  textSize: 22,
+                  isTitle: true,
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -104,22 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextWidget(
-                  text: 'Our Product',
-                  color: color,
-                  textSize: 22,
-                  isTitle: true,
-                ),
-                TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'View All',
-                      style: TextStyle(fontSize: 22, color: Colors.blue),
-                    ))
-              ],
+            SectionTile(
+              color: color,
+              title: 'Our products',
             ),
             // FeedItems(),
             GridView.count(
@@ -138,6 +127,41 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SectionTile extends StatelessWidget {
+  const SectionTile({
+    super.key,
+    required this.color,
+    required this.title,
+  });
+
+  final Color color;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TextWidget(
+          text: title,
+          color: color,
+          textSize: 22,
+          isTitle: true,
+        ),
+        TextButton(
+            onPressed: () {
+              GetMethod.navigateTo(
+                  context: context, routeName: FeedScreen.routeName);
+            },
+            child: const Text(
+              'View All',
+              style: TextStyle(fontSize: 22, color: Colors.blue),
+            ))
+      ],
     );
   }
 }

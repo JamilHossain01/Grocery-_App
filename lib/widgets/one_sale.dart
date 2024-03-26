@@ -1,5 +1,6 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery/widgets/heart_widget.dart';
 import 'package:grocery/widgets/price_widgets.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:grocery/widgets/utils.dart';
@@ -25,7 +26,7 @@ class _OneSaleState extends State<OneSale> {
       padding: const EdgeInsets.all(8.0),
       child: Material(
         borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).cardColor.withOpacity(0.2),
+        color: Theme.of(context).cardColor.withOpacity(01),
         child: InkWell(
           onTap: () {},
           child: Padding(
@@ -57,12 +58,7 @@ class _OneSaleState extends State<OneSale> {
                               onTap: () {},
                               child: Icon(IconlyLight.bag_2),
                             ),
-                            GestureDetector(
-                              child: const Icon(
-                                IconlyLight.heart,
-                                color: Colors.red,
-                              ),
-                            ),
+                            HeartIconsW(),
                           ],
                         ),
                       ],
