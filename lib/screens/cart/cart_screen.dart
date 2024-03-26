@@ -13,13 +13,14 @@ class CartScreen extends StatelessWidget {
     Size size = Utils(context).getScreenSize;
     return Scaffold(
       appBar: AppBar(
+        elevation: 5,
         title: TextWidget(
           text: 'Cart',
           color: color,
           textSize: 22,
           isTitle: true,
         ),
-        actions: [
+        actions: const [
           Icon(IconlyLight.delete),
         ],
       ),
