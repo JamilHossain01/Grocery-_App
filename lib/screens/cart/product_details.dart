@@ -43,6 +43,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             flex: 2,
             child: FancyShimmerImage(
               imageUrl: 'https://i.ibb.co/F0s3FHQ/Apricots.png',
+              width: double.infinity,
             ),
           ),
           Flexible(
@@ -171,14 +172,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                       )
                     ],
                   ),
-                  Spacer(),
-                  Spacer(),
-                  Spacer(),
-                  Spacer(),
-                  Spacer(),
                   Container(
                     width: double.infinity,
-                    color: Colors.red,
+                    color: Theme.of(context).cardColor,
                     padding: EdgeInsets.symmetric(
                       horizontal: 30,
                       vertical: 20,
