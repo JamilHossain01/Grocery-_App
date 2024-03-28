@@ -16,7 +16,7 @@ class BottombarScreen extends StatefulWidget {
 }
 
 class _BottombarScreenState extends State<BottombarScreen> {
-  int _seletedIndex = 2;
+  int _seletedIndex = 3;
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> _pages = [

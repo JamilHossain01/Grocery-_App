@@ -44,6 +44,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: FancyShimmerImage(
               imageUrl: 'https://i.ibb.co/F0s3FHQ/Apricots.png',
               width: double.infinity,
+              height: size.height * 0.60,
             ),
           ),
           Flexible(
@@ -51,7 +52,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             child: Container(
               decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(6),
                       topRight: Radius.circular(6))),
               child: Column(
@@ -88,7 +89,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                               style: TextStyle(),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Material(
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(6),
@@ -107,7 +108,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -172,10 +173,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                       )
                     ],
                   ),
+                  SizedBox(
+                    height: size.height * 0.12,
+                  ),
                   Container(
                     width: double.infinity,
                     color: Theme.of(context).cardColor,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 30,
                       vertical: 20,
                     ),
@@ -186,8 +190,18 @@ class _ProductDetailsState extends State<ProductDetails> {
                           children: [
                             TextWidget(
                                 text: 'Total', color: color, textSize: 18),
-                            TextWidget(
-                                text: '\$4.67/1KG', color: color, textSize: 18)
+                            Row(
+                              children: [
+                                TextWidget(
+                                    text: '\$4.67/',
+                                    color: color,
+                                    textSize: 18),
+                                TextWidget(
+                                    text: '${_quantityTextController.text}KG',
+                                    color: color,
+                                    textSize: 22)
+                              ],
+                            )
                           ],
                         ),
                         Material(
@@ -227,7 +241,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         borderRadius: BorderRadius.circular(8),
         color: color,
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: InkWell(
             borderRadius: BorderRadius.circular(8),
             onTap: () {

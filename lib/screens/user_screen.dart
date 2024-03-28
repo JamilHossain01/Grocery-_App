@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:grocery/provider/dark_theme_provider.dart';
+import 'package:grocery/screens/wish/wish_screen.dart';
+import 'package:grocery/services/global_method.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
@@ -103,7 +105,10 @@ class _UserScreenState extends State<UserScreen> {
                 title: "Wishlist",
                 icon: IconlyLight.heart,
                 color: color,
-                onPressed: () {},
+                onPressed: () {
+                  GetMethod.navigateTo(
+                      context: context, routeName: WishScreen.routeName);
+                },
               ),
               _listTile(
                 title: 'Viewed',
