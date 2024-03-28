@@ -1,5 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery/screens/cart/product_details.dart';
+import 'package:grocery/services/global_method.dart';
 import 'package:grocery/widgets/heart_widget.dart';
 import 'package:grocery/widgets/price_widgets.dart';
 import 'package:grocery/widgets/text_widget.dart';
@@ -28,7 +30,10 @@ class _OneSaleState extends State<OneSale> {
         borderRadius: BorderRadius.circular(12),
         color: Theme.of(context).cardColor.withOpacity(01),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            GetMethod.navigateTo(
+                context: context, routeName: ProductDetails.routeName);
+          },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

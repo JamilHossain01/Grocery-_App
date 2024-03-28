@@ -4,6 +4,7 @@ import 'package:grocery/inner_screens/feed_screen.dart';
 import 'package:grocery/inner_screens/on_sale_screen.dart';
 import 'package:grocery/provider/dark_theme_provider.dart';
 import 'package:grocery/screens/bottom_bar_screen.dart';
+import 'package:grocery/screens/cart/product_details.dart';
 import 'package:grocery/screens/cart/new_design.dart';
 import 'package:provider/provider.dart';
 
@@ -49,6 +50,7 @@ class _MyAppState extends State<MyApp> {
           routes: {
             OnSaleScreen.routeName: (context) => const OnSaleScreen(),
             FeedScreen.routeName: (context) => const FeedScreen(),
+            ProductDetails.routeName: (context) => const ProductDetails(),
           },
         );
       }),

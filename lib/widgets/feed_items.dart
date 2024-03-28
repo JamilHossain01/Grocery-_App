@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/widgets.dart';
+import 'package:grocery/screens/cart/product_details.dart';
+import 'package:grocery/services/global_method.dart';
 import 'package:grocery/widgets/price_widgets.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:grocery/widgets/utils.dart';
@@ -42,7 +44,10 @@ class _FeedItemsState extends State<FeedItems> {
         borderRadius: BorderRadius.circular(12),
         color: Theme.of(context).cardColor.withOpacity(0.4),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            GetMethod.navigateTo(
+                context: context, routeName: ProductDetails.routeName);
+          },
           borderRadius: BorderRadius.circular(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +55,7 @@ class _FeedItemsState extends State<FeedItems> {
               FancyShimmerImage(
                 imageUrl: 'https://i.ibb.co/F0s3FHQ/Apricots.png',
                 height: size.width * 0.22,
-                width: size.width * 0.22,
+                width: size.width * 0.2,
               ),
               Row(
                 children: [
