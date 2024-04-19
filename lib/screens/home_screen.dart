@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:grocery/consts/consts.dart';
 import 'package:grocery/inner_screens/feed_screen.dart';
 import 'package:grocery/inner_screens/on_sale_screen.dart';
 import 'package:grocery/services/global_method.dart';
@@ -10,6 +11,10 @@ import 'package:grocery/widgets/one_sale.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:grocery/widgets/utils.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
+
+import '../models/products_model.dart';
+import '../providers/product_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,11 +30,15 @@ class _HomeScreenState extends State<HomeScreen> {
     'assets/images/offres/Offer3.jpg',
     'assets/images/offres/Offer4.jpg',
   ];
+
   @override
   Widget build(BuildContext context) {
     final Utils utils = Utils(context);
     final themeState = utils.getTheme;
     final Color color = Utils(context).color;
+    final productProvider = Provider.of<ProductProvider>(context);
+    List<ProductModel> allProducts = productProvider.getProducts;
+    List<ProductModel> productOnsale = productProvider.getOnsaleProducts;
 
     Size size = Utils(context).getScreenSize;
     return Scaffold(
@@ -52,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.grey,
                       activeSize: size.height * 0.02,
                     )),
-                control: SwiperControl(
+                control: const SwiperControl(
                   color: Colors.blue,
                 ),
               ),
@@ -98,9 +107,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
-                            return OneSale();
+                            return ChangeNotifierProvider.value(
+                              value: productOnsale[index],
+                              child: OneSale(),
+                            );
                           },
-                          itemCount: 10),
+                          itemCount:productOnsale.length),
                     ),
                   ),
                 ],
@@ -118,9 +130,12 @@ class _HomeScreenState extends State<HomeScreen> {
               childAspectRatio: size.width / (size.height * 0.62),
               crossAxisCount: 2,
               children: List.generate(
-                8,
+                (allProducts.length > 8 ? allProducts.length : 8),
                 (index) {
-                  return FeedItems();
+                  return ChangeNotifierProvider.value(
+                    value: allProducts[index],
+                    child: FeedItems(),
+                  );
                 },
               ),
             ),

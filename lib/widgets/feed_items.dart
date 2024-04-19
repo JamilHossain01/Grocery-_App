@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/widgets.dart';
-import 'package:grocery/screens/cart/product_details.dart';
+import 'package:grocery/models/products_model.dart';
+import 'package:grocery/inner_screens/product_details.dart';
 import 'package:grocery/services/global_method.dart';
+import 'package:grocery/widgets/heart_widget.dart';
 import 'package:grocery/widgets/price_widgets.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:grocery/widgets/utils.dart';
-import 'package:iconly/iconly.dart';
+
+import 'package:provider/provider.dart';
 
 class FeedItems extends StatefulWidget {
-  FeedItems({Key? key}) : super(key: key);
+  FeedItems({Key? key, }) : super(key: key);
+
 
   @override
   State<FeedItems> createState() => _FeedItemsState();
@@ -38,6 +42,7 @@ class _FeedItemsState extends State<FeedItems> {
     final themeState = utils.getTheme;
     final Color color = Utils(context).color;
     final Size size = Utils(context).getScreenSize;
+    final productModel = Provider.of<ProductModel>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Material(
@@ -53,20 +58,19 @@ class _FeedItemsState extends State<FeedItems> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FancyShimmerImage(
-                imageUrl: 'https://i.ibb.co/F0s3FHQ/Apricots.png',
+                imageUrl: productModel.imageUrl,
                 height: size.width * 0.22,
                 width: size.width * 0.2,
               ),
               Row(
                 children: [
-                  TextWidget(text: "Product", color: color, textSize: 22),
+                  Flexible(flex: 3,
+                      child: TextWidget(text: productModel.title, color: color, textSize: 22)),
                   SizedBox(
                     width: size.width * 0.10,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(IconlyLight.heart),
-                  ),
+                  Flexible(flex: 1,
+                      child: HeartIconsW())
                 ],
               ),
               Row(
@@ -75,14 +79,14 @@ class _FeedItemsState extends State<FeedItems> {
                     flex: 7,
                     child: PriceWidget(
                       isOnsale: true,
-                      salPrice: 5.9,
-                      price: 8.9,
+                      salPrice:productModel.salePrice,
+                      price:productModel.price,
                       textPrice: _textEditingController.text,
                     ),
                   ),
-                  Flexible(
+                  Flexible(flex: 3,
                     child: FittedBox(
-                      child: TextWidget(text: 'KG', color: color, textSize: 16),
+                      child: TextWidget(text: productModel.isPiece?'peace':'KG', color: color, textSize: 16),
                     ),
                   ),
                   Flexible(

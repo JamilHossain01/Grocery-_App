@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:grocery/consts/consts.dart';
+import 'package:grocery/models/products_model.dart';
+import 'package:grocery/providers/product_provider.dart';
 import 'package:grocery/widgets/feed_items.dart';
 import 'package:grocery/widgets/one_sale.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:grocery/widgets/utils.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class FeedScreen extends StatefulWidget {
   static const routeName = '/FeedScreen';
@@ -28,6 +32,8 @@ class _FeedScreenState extends State<FeedScreen> {
     final Color color = Utils(context).color;
 
     Size size = Utils(context).getScreenSize;
+    final productProvider = Provider.of<ProductProvider>(context);
+    List<ProductModel> allProducts = productProvider.getProducts;
 
     return Scaffold(
       appBar: AppBar(
@@ -93,9 +99,12 @@ class _FeedScreenState extends State<FeedScreen> {
               crossAxisCount: 2,
               childAspectRatio: size.width / (size.height * 0.60),
               padding: EdgeInsets.zero,
-              children: List.generate(
-                16,
-                (index) => FeedItems(),
+              children: List.generate(allProducts.length,
+                (index) => ChangeNotifierProvider.value(value: allProducts[index],
+                  child: FeedItems(
+                    
+                  ),
+                ),
               ),
             ),
           ],
