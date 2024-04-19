@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:grocery/providers/product_provider.dart';
 import 'package:grocery/widgets/heart_widget.dart';
 import 'package:grocery/widgets/text_widget.dart';
 import 'package:grocery/widgets/utils.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   static String routeName = '/ProductDetails';
@@ -28,6 +30,12 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     Size size = Utils(context).getScreenSize;
     Color color = Utils(context).color;
+    final productProviders = Provider.of<ProductProvider>(context);
+    final productID = ModalRoute.of(context)!.settings.arguments as String;
+    final getCurrProd = productProviders.findProdByID(productID);
+    double usedPrice = getCurrProd.isOnSale?getCurrProd.salePrice:getCurrProd.price;
+    double totalPrice = usedPrice*int.parse(_quantityTextController.text);
+
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
@@ -42,7 +50,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           Flexible(
             flex: 2,
             child: FancyShimmerImage(
-              imageUrl: 'https://i.ibb.co/F0s3FHQ/Apricots.png',
+              imageUrl: getCurrProd.imageUrl,
               width: double.infinity,
               height: size.height * 0.60,
             ),
@@ -64,7 +72,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       children: [
                         Flexible(
                             child: TextWidget(
-                                text: 'Apples', color: color, textSize: 22)),
+                                text: getCurrProd.title, color: color, textSize: 22)),
                         const HeartIconsW(),
                       ],
                     ),
@@ -76,16 +84,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                       child: Row(
                         children: [
                           TextWidget(
-                            text: '\$0.59',
+                            text: '\$${usedPrice.toStringAsFixed(2)}',
                             textSize: 22,
                             color: color,
                             isTitle: true,
                           ),
-                          TextWidget(text: '/KG', color: color, textSize: 22),
-                          const Visibility(
-                            visible: true,
+                          TextWidget(text: getCurrProd.isPiece?'peace':'/KG', color: color, textSize: 22),
+                           Visibility(
+                            visible:getCurrProd.isOnSale?true:false,
                             child: Text(
-                              '\$1.19',
+                              '\$${getCurrProd.price.toStringAsFixed(2)}',
                               style: TextStyle(),
                             ),
                           ),
@@ -193,7 +201,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                             Row(
                               children: [
                                 TextWidget(
-                                    text: '\$4.67/',
+                                    text: '\$${totalPrice.toStringAsFixed(2)}/',
                                     color: color,
                                     textSize: 18),
                                 TextWidget(
