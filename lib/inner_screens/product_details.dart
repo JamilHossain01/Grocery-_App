@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   static String routeName = '/ProductDetails';
+
   const ProductDetails({super.key});
 
   @override
@@ -21,6 +22,7 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   final TextEditingController _quantityTextController =
       TextEditingController(text: '1');
+
   void dispos() {
     _quantityTextController.dispose();
     super.dispose();
@@ -33,8 +35,9 @@ class _ProductDetailsState extends State<ProductDetails> {
     final productProviders = Provider.of<ProductProvider>(context);
     final productID = ModalRoute.of(context)!.settings.arguments as String;
     final getCurrProd = productProviders.findProdByID(productID);
-    double usedPrice = getCurrProd.isOnSale?getCurrProd.salePrice:getCurrProd.price;
-    double totalPrice = usedPrice*int.parse(_quantityTextController.text);
+    double usedPrice =
+        getCurrProd.isOnSale ? getCurrProd.salePrice : getCurrProd.price;
+    double totalPrice = usedPrice * int.parse(_quantityTextController.text);
 
     return Scaffold(
       appBar: AppBar(
@@ -72,7 +75,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                       children: [
                         Flexible(
                             child: TextWidget(
-                                text: getCurrProd.title, color: color, textSize: 22)),
+                                text: getCurrProd.title,
+                                color: color,
+                                textSize: 22)),
                         const HeartIconsW(),
                       ],
                     ),
@@ -89,9 +94,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                             color: color,
                             isTitle: true,
                           ),
-                          TextWidget(text: getCurrProd.isPiece?'peace':'/KG', color: color, textSize: 22),
-                           Visibility(
-                            visible:getCurrProd.isOnSale?true:false,
+                          TextWidget(
+                              text: getCurrProd.isPiece ? 'peace' : '/KG',
+                              color: color,
+                              textSize: 22),
+                          Visibility(
+                            visible: getCurrProd.isOnSale ? true : false,
                             child: Text(
                               '\$${getCurrProd.price.toStringAsFixed(2)}',
                               style: TextStyle(),
@@ -231,8 +239,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ),
                 ],
               ),
-            )
-          )
+            ),
+          ),
         ],
       ),
     );
